@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.54.0"
-    }
-  }
-}
 provider "aws" {
   region     = var.region
   # Hard-coding credentials is not recommended
@@ -20,4 +12,8 @@ resource "aws_instance" "ec2" {
   tags = {
     Name = "trial-instance"
   }
+}
+
+output "ec2_ip" {
+    value = aws_instance.ec2.private_ip
 }
