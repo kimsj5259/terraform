@@ -19,9 +19,20 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "trial-instance"
+    Name = "trial-instance2"
+  }
+
+  provisioner "local-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y python3-pip",
+      "pip3 install -r requirements.txt",
+      "python3 bot.py",
+    ]
   }
 }
+
+
 
 output "ec2_ip" {
     value = aws_instance.ec2.private_ip
