@@ -22,7 +22,7 @@ resource "aws_instance" "example" {
     Name = "trial-instance2"
   }
 
-  provisioner "local-exec" {
+  provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",
       "sudo apt-get install -y python3-pip",
